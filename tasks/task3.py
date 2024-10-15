@@ -12,7 +12,7 @@ because its examples haven't been used in training the model.
 
 3) Evaluate the model on the test set after training it.
 '''
-from utils.model import build_model, train_model, plot_the_loss_curve
+from ..utils.model import build_model, train_model, plot_the_loss_curve
 
 # The following variables are the hyperparameters.
 learning_rate = 0.08

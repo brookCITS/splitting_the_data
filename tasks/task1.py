@@ -7,7 +7,7 @@ The validation_split variable specifies the proportion of the original training 
 Experiment with two or three different values of validation_split. Do different values of validation_split fix the problem?
 
 '''
-from utils.model import build_model, train_model, plot_the_loss_curve
+from ..utils.model import build_model, train_model, plot_the_loss_curve
 
 # The following variables are the hyperparameters.
 learning_rate = 0.08
