@@ -14,9 +14,9 @@ Compare the root mean squared error of the model when evaluated on each of the t
 
 '''
 
-def run(context):
+def test(): 
     
     question = "Ideally, the root mean squared error of all three sets should be similar. Are they?"
-    answer = ""
+    answer = "yes they are similar"
 
     return {"question":question,"answer": answer}

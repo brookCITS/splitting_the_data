@@ -12,7 +12,7 @@ because its examples haven't been used in training the model.
 
 3) Evaluate the model on the test set after training it.
 '''
-from utils.model import build_model, train_model, plot_the_loss_curve
+from ..utils import model #build_model, train_model, plot_the_loss_curve
 
 # The following variables are the hyperparameters.
 learning_rate = 0.08
@@ -30,19 +30,21 @@ my_label = "median_house_value" # the median house value on a specific city bloc
 # solely on the neighborhood's median income.
 
 
-
-# Shuffle the examples.
-shuffled_train_df = '[code goes here]'
-
 def run(context):
     # Invoke the functions to build and train the model.
     train_df = context.train_df
-    my_model = build_model(context,learning_rate)
-    epochs, rmse, history = train_model(context, my_model, shuffled_train_df, my_feature,
+    np = context.np
+
+    # Shuffle the examples.
+    shuffled_train_df = train_df.reindex(np.random.permutation(train_df.index))
+
+
+    my_model = model.build_model(context,learning_rate)
+    epochs, rmse, history = model.train_model(context, my_model, shuffled_train_df, my_feature,
                                         my_label, my_epochs, batch_size,
                                         validation_split)
 
-    plot_the_loss_curve(context, epochs, history["root_mean_squared_error"],
+    model.plot_the_loss_curve(context, epochs, history["root_mean_squared_error"],
                         history["val_root_mean_squared_error"])
     
     
@@ -54,11 +56,16 @@ def run(context):
 
     results = my_model.evaluate(x_test, y_test, batch_size=batch_size)
     print(results)
+    return {'results':{
+        'mean squared error': results[0],
+        'root_mean_squared_error': results[1]
+    }}
 
-    
 
-    question = "At what range of values of validation_split do the final loss values for the training set and validation set diverge meaningfully? Why?"
-    answer = ""
+def test(): 
+
+    question = "Does shuffuling the dataframe before spliting help?"
+    answer = "yes shuffuling helps lower the error"
 
 
     return {"question":question,"answer": answer}

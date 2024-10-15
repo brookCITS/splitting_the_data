@@ -15,13 +15,15 @@ def run(context):
     train_df = context.train_df
     # Print the first 10 rows of the training DataFrame
     print('frist 10 rows')
-
+    print(train_df.head(10))
 
     # Print the last 10 rows of the training DataFrame
     print('last 10 rows')
+    print(train_df.tail(10))
 
+def test(): 
 
-    question = "What do you notice?"
-    answer = ""
+    question = "What do you notice? are the training set similar to the validation set"
+    answer = "training set are not similar to validation set"
 
     return {"question":question,"answer": answer}
